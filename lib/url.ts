@@ -9,7 +9,6 @@ interface UrlQueryParams {
 interface RemoveUrlQueryParams {
   params: string;
   keysToRemove: string[];
-  value: string;
 }
 
 export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
@@ -23,7 +22,6 @@ export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
 export const removeKeysFromUrlQuery = ({
   params,
   keysToRemove,
-  value,
 }: RemoveUrlQueryParams) => {
   const queryString = qs.parse(params);
 

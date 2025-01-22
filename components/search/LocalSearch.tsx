@@ -35,7 +35,6 @@ const LocalSearch = ({ route, imgSrc, placeholder, otherClasses }: Props) => {
           const newUrl = removeKeysFromUrlQuery({
             params: searchParams.toString(),
             keysToRemove: ["query"],
-            value: searchQuery,
           });
 
           router.push(newUrl, { scroll: false });
@@ -50,15 +49,18 @@ const LocalSearch = ({ route, imgSrc, placeholder, otherClasses }: Props) => {
     <div
       className={`background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-[10px] px-4 ${otherClasses}`}
     >
-      <Image
-        src={imgSrc}
-        width={24}
-        height={24}
-        alt="Search"
-        className="cursor-pointer"
-      />
+      <label htmlFor="search">
+        <Image
+          src={imgSrc}
+          width={24}
+          height={24}
+          alt="Search"
+          className="cursor-pointer"
+        />
+      </label>
 
       <Input
+        id="search"
         type="text"
         placeholder={placeholder}
         value={searchQuery}
