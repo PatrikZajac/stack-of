@@ -1,11 +1,12 @@
-import mongoose, { Schema, Types } from "mongoose";
+import { Schema, models, model, Types, Document } from "mongoose";
 
 export interface ICollection {
   author: Types.ObjectId;
   question: Types.ObjectId;
 }
 
-const CollectionSchema = new mongoose.Schema<ICollection>(
+export interface ICollectionDoc extends ICollection, Document {}
+const CollectionSchema = new Schema<ICollection>(
   {
     author: { type: Schema.Types.ObjectId, ref: "User", required: true },
     question: { type: Schema.Types.ObjectId, ref: "Question", required: true },
@@ -14,7 +15,6 @@ const CollectionSchema = new mongoose.Schema<ICollection>(
 );
 
 const Collection =
-  mongoose.models?.Collection ||
-  mongoose.model<ICollection>("Collection", CollectionSchema);
+  models?.Collection || model<ICollection>("Collection", CollectionSchema);
 
 export default Collection;
