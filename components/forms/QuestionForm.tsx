@@ -1,8 +1,15 @@
 "use client";
-import { AskQuestionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MDXEditorMethods } from "@mdxeditor/editor";
+import dynamic from "next/dynamic";
 import React, { KeyboardEvent, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { AskQuestionSchema } from "@/lib/validations";
+
+import TagCard from "../cards/TagCard";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
@@ -13,11 +20,6 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { MDXEditorMethods } from "@mdxeditor/editor";
-import dynamic from "next/dynamic";
-import { z } from "zod";
-import TagCard from "../cards/TagCard";
 
 const Editor = dynamic(() => import("@/components/editor"), {
   // Make sure we turn SSR off
@@ -95,8 +97,8 @@ const QuestionForm = () => {
                   className="paragraph-regular background-light700_dark300 light-border-2 text-dark300_light700 no-focus min-h-[56px] border"
                 />
               </FormControl>
-              <FormDescription className="body-regular text-light-500 mt-2.5">
-                Be specific and imagine you're asking a question to another
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Be specific and imagine you&apos;re asking a question to another
                 person.
               </FormDescription>
               <FormMessage />
@@ -120,8 +122,9 @@ const QuestionForm = () => {
                   fieldChange={field.onChange}
                 />
               </FormControl>
-              <FormDescription className="body-regular text-light-500 mt-2.5">
-                Introduce the problem and expand on what you've put in the title
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Introduce the problem and expand on what you&apos;ve put in the
+                title
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -162,7 +165,7 @@ const QuestionForm = () => {
                   )}
                 </div>
               </FormControl>
-              <FormDescription className="body-regular text-light-500 mt-2.5">
+              <FormDescription className="body-regular mt-2.5 text-light-500">
                 Add up to 3 tags to describe what your question is about. You
                 need to press enter to add a tag.
               </FormDescription>
@@ -174,7 +177,7 @@ const QuestionForm = () => {
         <div className="mt-16 flex justify-end">
           <Button
             type="submit"
-            className="primary-gradient !text-light-900 w-fit"
+            className="primary-gradient w-fit !text-light-900"
           >
             Ask Question
           </Button>

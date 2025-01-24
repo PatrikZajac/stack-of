@@ -1,4 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetClose,
@@ -6,10 +10,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Image from "next/image";
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
-import { Button } from "@/components/ui/button";
+
 import NavLinks from "./NavLinks";
 
 const MobileNavigation = () => {
@@ -42,7 +44,7 @@ const MobileNavigation = () => {
           </p>
         </Link>
 
-        <div className="no-scrollbar flex h-[calc(100vh-80px)] overflow-y-auto flex-col justify-between">
+        <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
           <SheetClose asChild>
             <section className="flex h-full flex-col gap-6 pt-16">
               <NavLinks isMobileNav />

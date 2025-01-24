@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import {
   DefaultValues,
   FieldValues,
@@ -20,7 +21,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import ROUTES from "@/constants/routes";
 
 interface AuthFormProps<T extends FieldValues> {
@@ -89,7 +89,7 @@ const AuthForm = <T extends FieldValues>({
 
         {formType === "SIGN_IN" ? (
           <p>
-            Don't have an account?{""}{" "}
+            Don&apos;t have an account?{""}{" "}
             <Link
               className="paragraph-semibold primary-text-gradient"
               href={ROUTES.SIGN_UP}

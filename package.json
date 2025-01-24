@@ -21,6 +21,9 @@
     "cm6-theme-basic-dark": "^0.2.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-tailwindcss": "^3.17.5",
     "lucide-react": "^0.469.0",
     "mongoose": "^8.9.5",
@@ -37,7 +40,9 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/compat": "^1.2.4",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.17.0",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^20",
     "@types/react": "^19",

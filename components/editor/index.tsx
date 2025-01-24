@@ -1,5 +1,4 @@
 "use client";
-import type { ForwardedRef } from "react";
 import {
   headingsPlugin,
   listsPlugin,
@@ -32,6 +31,8 @@ import "@mdxeditor/editor/style.css";
 import "./dark-editor.css";
 import { basicDark } from "cm6-theme-basic-dark";
 import { useTheme } from "next-themes";
+import type { ForwardedRef } from "react";
+
 interface Props {
   value: string;
   fieldChange: (value: string) => void;
@@ -49,7 +50,7 @@ const Editor = ({ value, editorRef, fieldChange, ...props }: Props) => {
       key={resolvedTheme}
       markdown={value}
       ref={editorRef}
-      className="background-light800_dark200 light-border-2 markdown-editor dark-editor w-full border grid"
+      className="background-light800_dark200 light-border-2 markdown-editor dark-editor grid w-full border"
       onChange={fieldChange}
       plugins={[
         headingsPlugin(),

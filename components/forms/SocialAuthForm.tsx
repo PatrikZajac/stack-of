@@ -38,7 +38,7 @@ const SocialAuthForm = () => {
           width={20}
           height={20}
           alt="Github Logo"
-          className="invenrt-colors mr-2.5 objeckt-contain"
+          className="invert-colors mr-2.5 object-contain"
         />
         <span>Log in with Github</span>
       </Button>
@@ -48,7 +48,7 @@ const SocialAuthForm = () => {
           width={20}
           height={20}
           alt="Google Logo"
-          className="mr-2.5 objeckt-contain"
+          className="mr-2.5 object-contain"
         />
         <span>Log in with Google</span>
       </Button>
