@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-import User from "@/database/user.model";
+import Account from "@/database/account.model";
 import handleError from "@/lib/handlers/error";
-import { NotFoundError } from "@/lib/http-errors";
+import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
-import { UserSchema } from "@/lib/validations";
+import { AccountSchema } from "@/lib/validations";
 import { APIErrorResponse } from "@/types/global";
 
 export async function GET(
@@ -12,16 +12,16 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  if (!id) throw new NotFoundError("User");
+  if (!id) throw new NotFoundError("No id provided");
 
   try {
     await dbConnect();
 
-    const user = await User.findById(id);
+    const account = await Account.findById(id);
 
-    if (!user) throw new NotFoundError("User");
+    if (!account) throw new NotFoundError("Account");
 
-    return NextResponse.json({ success: true, data: user }, { status: 200 });
+    return NextResponse.json({ success: true, data: account }, { status: 200 });
   } catch (error) {
     return handleError(error, "api") as APIErrorResponse;
   }
@@ -32,16 +32,16 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  if (!id) throw new NotFoundError("User");
+  if (!id) throw new NotFoundError("Account");
 
   try {
     await dbConnect();
 
-    const user = await User.findByIdAndDelete(id);
+    const account = await Account.findByIdAndDelete(id);
 
-    if (!user) throw new NotFoundError("User");
+    if (!account) throw new NotFoundError("Account");
 
-    return NextResponse.json({ success: true, data: user }, { status: 200 });
+    return NextResponse.json({ success: true, data: account }, { status: 200 });
   } catch (error) {
     return handleError(error, "api") as APIErrorResponse;
   }
@@ -52,22 +52,25 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  if (!id) throw new NotFoundError("User");
+  if (!id) throw new NotFoundError("Account");
 
   try {
     await dbConnect();
 
     const body = await request.json();
-    const validatedData = UserSchema.partial().parse(body);
+    const validatedData = AccountSchema.partial().safeParse(body);
 
-    const updatedUser = await User.findByIdAndUpdate(id, validatedData, {
+    if (!validatedData.success)
+      throw new ValidationError(validatedData.error.flatten().fieldErrors);
+
+    const updatedAccount = await Account.findByIdAndUpdate(id, validatedData, {
       new: true,
     });
 
-    if (!updatedUser) throw new NotFoundError("User");
+    if (!updatedAccount) throw new NotFoundError("Account");
 
     return NextResponse.json(
-      { success: true, data: updatedUser },
+      { success: true, data: updatedAccount },
       { status: 200 }
     );
   } catch (error) {
